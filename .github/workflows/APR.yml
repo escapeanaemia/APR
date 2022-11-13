@@ -33,6 +33,8 @@ jobs:
           base: main
           labels: automerge
           branch: action-created-branch/${{ inputs.fileName }}
+          assignees: ${{ github.actor }}
+          delete-branch: true
 # inputs: 
 #   token: 
 #     description: 'Get token for process'
