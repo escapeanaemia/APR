@@ -30,8 +30,8 @@ jobs:
           commit-message: create file ${{ inputs.fileName }}
           title: Automatically created pull request
           body: Automatically created pull request body
-          base: main
-          labels: action-branch/create-${{ inputs.fileName }}
+          base: action-branch/create-${{ inputs.fileName }}
+          labels: automerge
           branch: main
 # inputs: 
 #   token: 
