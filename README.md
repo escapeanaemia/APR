@@ -1,4 +1,5 @@
-# APR
+<img width="500" alt="스크린샷 2022-11-13 오후 11 58 56" src="https://user-images.githubusercontent.com/19788090/201528433-cb638a12-f66d-474f-92ff-f66ddbab2dcb.png">
+
 Automate Pull Request is a series of actions which can automatically run for pull request open, close etc.
 
 
