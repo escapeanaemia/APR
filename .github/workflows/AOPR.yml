@@ -1,5 +1,4 @@
-name: Open & Merge Pull Request Automation
-# description: 'Open a new pull request and merge that pr automatically'
+name: Open Pull Request Automation
 
 on:
   workflow_dispatch:
