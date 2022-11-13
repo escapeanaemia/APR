@@ -19,7 +19,7 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
-          github-token: ${{ GITHUB_TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           number: ${{github.event.number}}
           run: |
             echo "PR Number is ${{github.event.number}}"
@@ -27,5 +27,5 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
-          GITHUB_TOKEN: "${{ GITHUB_TOKEN }}"
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
       
