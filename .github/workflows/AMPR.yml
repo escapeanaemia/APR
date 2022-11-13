@@ -9,14 +9,15 @@ on:
 
 jobs:
   build:
-    if: ${{ github.event.label.name == 'automerge' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        if: ${{ github.event.label.name == 'automerge' }}
         uses: actions/checkout@master
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Approve Pull Request
+        if: ${{ github.event.label.name == 'automerge' }}
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,6 +25,7 @@ jobs:
           run: |
             echo "PR Number is ${{github.event.number}}"
       - name: automerge
+        if: ${{ github.event.label.name == 'automerge' }}
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
