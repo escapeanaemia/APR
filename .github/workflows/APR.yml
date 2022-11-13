@@ -1,0 +1,38 @@
+name: Open & Merge Pull Request Automation
+# description: 'Open a new pull request and merge that pr automatically'
+
+on:
+  workflow_dispatch:
+    inputs:
+      fileName:
+        description: '생성할 파일 이름'
+        required: true
+      fileText:
+        description: '생성할 파일에 들어갈 텍스트'
+        default: 'default'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      #to make a diff for commit
+      - uses: "finnp/create-file-action@master"
+        env:
+          FILE_NAME: "dir/${{ inputs.fileName }}.txt"
+          FILE_DATA: ${{ inputs.fileText }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+          commit-message: create file ${{ inputs.fileName }}
+          title: Automatically created pull request
+          body: Automatically created pull request body
+          base: main
+          labels: action-branch/create-${{ inputs.fileName }}
+          branch: main
+# inputs: 
+#   token: 
+#     description: 'Get token for process'
+#     default: ${{ secrets.TOKEN }}
+#   path:
+#     description: '
