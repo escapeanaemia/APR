@@ -17,7 +17,7 @@ jobs:
       #to make a diff for commit
       - uses: "finnp/create-file-action@master"
         env:
-          FILE_NAME: "dir/${{ inputs.fileName }}.txt"
+          FILE_NAME: "${{ inputs.fileName }}.txt"
           FILE_DATA: ${{ inputs.fileText }}
 
       - name: Create Pull Request
