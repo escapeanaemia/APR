@@ -1,0 +1,11 @@
+name: Block Merging Pull Request Automatically
+
+# From https://github.com/siimon/milestone-check-action
+on: 
+  pull_request:
+  
+jobs:
+  check-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: siimon/milestone-check-action@releases/v2
