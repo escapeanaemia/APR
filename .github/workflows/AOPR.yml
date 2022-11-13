@@ -25,7 +25,6 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.2.0
         with:
-          token: ${{ secrets.TOKEN }}
           commit-message: create file ${{ inputs.fileName }}
           title: Automatically created pull request
           body: Automatically created pull request body
@@ -34,9 +33,3 @@ jobs:
           branch: action-created-branch/${{ inputs.fileName }}
           assignees: ${{ github.actor }}
           delete-branch: true
-# inputs: 
-#   token: 
-#     description: 'Get token for process'
-#     default: ${{ secrets.TOKEN }}
-#   path:
-#     description: '
