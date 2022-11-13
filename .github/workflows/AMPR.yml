@@ -2,25 +2,29 @@ name: Merge Pull Request Automation
 
 on: 
   pull_request:
-    types: [ labeled, edited, unlabeled ]
 
 jobs:
   build:
-    if: ${{ github.event.label.name == 'automerge' }}
     runs-on: ubuntu-latest
-    
     steps:
+      - name: CheckLabel
+        run: |
+          echo ${{ github.event.pull_request.labels.*.name }}
       - name: Checkout
+        if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: actions/checkout@master
         with:
-          ref: ${{ github.ref }}
-      - name: Get current PR Number
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Approve Pull Request
+        if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          number: ${{github.event.number}}
+          run: |
+            echo "PR Number is ${{github.event.number}}"
       - name: automerge
+        if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
