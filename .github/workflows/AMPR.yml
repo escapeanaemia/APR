@@ -6,11 +6,11 @@ on:
       PRNumber:
         description: 'Automerge 할 PR Number'
         required: true
-  pull_request:
-    types: 
-      - labeled
-      - edited
-      - unlabeled
+#  pull_request:
+#    types: 
+#      - labeled
+#      - edited
+#      - unlabeled
 
 jobs:
   build:
