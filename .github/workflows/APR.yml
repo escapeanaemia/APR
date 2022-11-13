@@ -20,7 +20,7 @@ jobs:
       #to make a diff for commit
       - uses: "finnp/create-file-action@master"
         env:
-          FILE_NAME: textFiles/"${{ inputs.fileName }}.txt"
+          FILE_NAME: "textFiles/${{ inputs.fileName }}.txt"
           FILE_DATA: ${{ inputs.fileText }}
 
       - name: Create Pull Request
@@ -32,7 +32,7 @@ jobs:
           body: Automatically created pull request body
           base: main
           labels: automerge
-          branch: action-branch/create-${{ inputs.fileName }}
+          branch: action-created-branch/${{ inputs.fileName }}
 # inputs: 
 #   token: 
 #     description: 'Get token for process'
