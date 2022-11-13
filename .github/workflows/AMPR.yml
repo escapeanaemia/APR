@@ -7,6 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: CheckLabel
+        run: |
+          echo ${{ github.event.pull_request.labels.*.name }}
       - name: Checkout
         if: contains(github.event.pull_request.labels.*.name, 'automerge')
         uses: actions/checkout@master
