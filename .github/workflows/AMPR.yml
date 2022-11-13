@@ -1,8 +1,16 @@
 name: Merge Pull Request Automation
 
 on: 
+  workflow_dispatch:
+    inputs:
+      PRNumber:
+        description: 'Automerge 할 PR Number'
+        required: true
   pull_request:
-    types: [ labeled, edited, unlabeled ]
+    types: 
+      - labeled
+      - edited
+      - unlabeled
 
 jobs:
   build:
@@ -19,7 +27,7 @@ jobs:
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          number:  PRNumber # $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
       - name: automerge
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
