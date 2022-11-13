@@ -12,15 +12,12 @@ jobs:
     if: ${{ github.event.label.name == 'automerge' }}
     runs-on: ubuntu-latest
     env: 
-      GITHUB_REF: ${{ github.ref }}
       PR_NUMBER: ${{github.event.number}}
     steps:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          ref: $GITHUB_REF
-          run: |
-            echo "Reference is $GITHUB_REF"
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v2.0.0
         with:
